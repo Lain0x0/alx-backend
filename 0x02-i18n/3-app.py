@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Configuring template using `Babel`"""
+""" 3-Parametrize_templates """
 from flask import Flask, render_template, request
 from flask_babel import Babel
 
 
 class Config:
-    """Set up Config class for LANGUAGES & 
-    others parmaters"""
+    """ Configuration settings for Babel & supported languages """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
@@ -20,13 +19,13 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale() -> str:
-    """Returning accept_language paramater for best match"""
+    """Returning the best for accept_language parameter"""
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route("/")
 def index():
-    """Rendering (`3-index.html`) template"""
+    """Render the '3-index.html' template"""
     return render_template("3-index.html")
 
 
